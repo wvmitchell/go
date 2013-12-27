@@ -1,21 +1,26 @@
 package wc
 
-import "reflect"
+import (
+  "reflect"
+  "strings"
+)
 
-type Histogram struct{
-  word_counts map[string]int
-}
-
-func NewHistogram(word_counts map[string]int) (h *Histogram) {
-  for word, count := range word_counts {
-    h.word_counts[word] = count
-  }
-  return
-}
+type Histogram map[string]int
 
 func (h Histogram) Equal(other Histogram) bool {
-  return reflect.DeepEqual(h.word_counts, other.word_counts)
+  return reflect.DeepEqual(h, other)
 }
 
-func WordCount(){
+func WordCount(words string) Histogram {
+  h := make(Histogram)
+  populateHistogram(h, words)
+  return h
 }
+
+func populateHistogram(h Histogram, words string) {
+  split_words := strings.Split(words, " ")
+  for i := range split_words {
+    h[split_words[i]] += 1
+  }
+}
+

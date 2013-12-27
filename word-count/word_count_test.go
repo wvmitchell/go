@@ -21,33 +21,28 @@ func TestEqual(t *testing.T) {
 }
 
 func TestNotEqual(t *testing.T) {
-	t.SkipNow()
 	h1 := Histogram{"word": 1}
 	h2 := Histogram{"word": 1, "games": 2}
 	assertNotEqual(t, h1, h2)
 }
 
 func TestCountOneWord(t *testing.T) {
-	t.SkipNow()
 	h := Histogram{"word": 1}
 	assertEqual(t, WordCount("word"), h)
 }
 
 func TestCountOneOfEach(t *testing.T) {
-	t.SkipNow()
 	h := Histogram{"one": 1, "of": 1, "each": 1}
 	assertEqual(t, WordCount("one of each"), h)
 }
 
 func TestCountMultipleOccurrences(t *testing.T) {
-	t.SkipNow()
 	actual := WordCount("one fish two fish red fish blue fish")
 	expected := Histogram{"one": 1, "fish": 4, "two": 1, "red": 1, "blue": 1}
 	assertEqual(t, actual, expected)
 }
 
 func TestIgnorePunctuation(t *testing.T) {
-	t.SkipNow()
 	actual := WordCount("car : carpet as java : javascript!!&@$%^&")
 	expected := Histogram{"car": 1, "carpet": 1, "as": 1, "java": 1, "javascript": 1}
 	assertEqual(t, actual, expected)
