@@ -5,14 +5,13 @@ import (
   "sort"
 )
 
-func Detect(subject string, candidates []string) []string {
-  found_anagrams := make([]string, 0)
+func Detect(subject string, candidates []string) (anagrams []string) {
   for i := range candidates {
     if anagram(strings.ToLower(subject), strings.ToLower(candidates[i])){
-      found_anagrams = append(found_anagrams, strings.ToLower(candidates[i]))
+      anagrams = append(anagrams, strings.ToLower(candidates[i]))
     }
   }
-  return found_anagrams
+  return
 }
 
 func anagram(word, test string) bool {
@@ -24,12 +23,12 @@ func same_word(first, second string) bool {
 }
 
 func same_letters(first, second string) bool {
-  first_letters := strings.Split(first, "")
-  second_letters := strings.Split(second, "")
-  sort.Strings(first_letters)
-  sort.Strings(second_letters)
-  new_first := strings.Join(first_letters, "")
-  new_second := strings.Join(second_letters, "")
-  return new_first == new_second
+  return sort_letters(first) == sort_letters(second)
 }
 
+func sort_letters(word string) string {
+  letters := strings.Split(word, "")
+  sort.Strings(letters)
+  new_word := strings.Join(letters, "")
+  return new_word
+}
