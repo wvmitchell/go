@@ -29,6 +29,5 @@ func same_letters(first, second string) bool {
 func sort_letters(word string) string {
   letters := strings.Split(word, "")
   sort.Strings(letters)
-  new_word := strings.Join(letters, "")
-  return new_word
+  return strings.Join(letters, "")
 }
