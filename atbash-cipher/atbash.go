@@ -1,0 +1,4 @@
+package atbash
+
+func Atbash() {
+}
