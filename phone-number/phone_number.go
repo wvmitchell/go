@@ -1,6 +1,7 @@
 package phonenumber
 
 import (
+  "fmt"
   "regexp"
   "strings"
 )
@@ -21,6 +22,15 @@ func AreaCode(number string) string {
 }
 
 func Format(number string) string {
-  return number
+  number = remove_country_code(number)
+  return fmt.Sprintf("(%s) %s-%s", AreaCode(number), number[3:6], number[6:])
+}
+
+func remove_country_code(number string) string {
+  if len(number) > 10 {
+    return number[1:]
+  } else {
+    return number
+  }
 }
 
